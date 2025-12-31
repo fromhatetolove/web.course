@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>网页添加独立评论功能</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/comment.css">
+    <style>
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            color: #333;
+            font-size: 14px;
+            font-family: monospace;
+            line-height: 1.5;
+        }
+        code {
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <!-- 文章详情模块 -->
+    <div class="article-detail">
+        <h1>【前端学习】网页添加独立评论功能</h1>
+        <p class="article-meta">发布时间：2025-12-29 | 作者：梁锦涛</p>
+        <div class="article-content">
+            <h3>一、更新背景</h3>
+            <p>此前已完成 Linux 下 Nginx 部署静态网页的实现，为提升静态博客的交互性，给博客添加评论功能，且需支持多文章评论独立存储，互相不干扰。</p>
+
+            <h3>二、核心实现技术</h3>
+            <p>采用浏览器本地存储 <code>localStorage</code> 实现评论持久化，配合原生 JavaScript 完成交互逻辑，样式与脚本独立拆分，不污染原有项目文件。</p>
+            <p>优势：无需后端服务器与数据库，实现简单、访问快速，数据持久化存储（除非手动清除浏览器缓存）。</p>
+
+            <h3>三、关键实现步骤</h3>
+            <h4>1. 评论功能 HTML 结构搭建</h4>
+            <p>在原有网页底部新增评论模块，包含「昵称输入框」「评论内容文本域」「提交按钮」和「评论列表展示区」，并通过 <code>data-article-id</code> 属性实现多文章独立标识。</p>
+            <p>核心代码片段：</p>
+<pre>
+&lt;!-- 评论功能模块（带文章唯一标识） --&gt;
+&lt;div class="comment-section" data-article-id="article_nginx"&gt;
+    &lt;h2&gt;评论区&lt;/h2&gt;
+    &lt;!-- 评论输入表单 --&gt;
+    &lt;div class="comment-form"&gt;
+        &lt;div class="form-item"&gt;
+            &lt;label for="username"&gt;昵称：&lt;/label&gt;
+            &lt;input type="text" id="username" placeholder="请输入你的昵称" required&gt;
+        &lt;/div&gt;
+        &lt;div class="form-item"&gt;
+            &lt;label for="comment-content"&gt;评论内容：&lt;/label&gt;
+            &lt;textarea id="comment-content" rows="5" placeholder="请输入你的评论内容" required&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;button id="submit-comment"&gt;提交评论&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 评论列表展示 --&gt;
+    &lt;div class="comment-list"&gt;
+        &lt;h3&gt;已有评论&lt;/h3&gt;
+        &lt;div id="comment-container"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+            <h4>2. 独立样式文件（css/comment.css）</h4>
+            <p>将评论区所有样式独立拆分至 <code>css/comment.css</code>，避免与原有样式冲突，核心样式片段（按钮与评论卡片）：</p>
+<pre>
+/* 提交按钮样式 */
+#submit-comment {
+    margin-left: 80px;
+    padding: 10px 20px;
+    background-color: #2f5496;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#submit-comment:hover {
+    background-color: #1f3a6b;
+}
+
+/* 单个评论卡片样式 */
+.single-comment {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.comment-username {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2f5496;
+}
+</pre>
+
+            <h4>3. 核心 JS 逻辑（多文章独立关键）</h4>
+            <p>修改 <code>js/comment.js</code>，通过 <code>data-article-id</code> 获取文章唯一标识，拼接成 <code>localStorage</code> 的存储键名，实现多文章评论隔离，核心代码片段：</p>
+<pre>
+// 获取文章唯一标识
+const commentSection = document.querySelector('.comment-section');
+const articleId = commentSection.dataset.articleId;
+const storageKey = `${articleId}_comments`; // 存储键名示例：article_nginx_comments
+
+// 保存评论到对应文章的本地存储
+function saveComment(comment) {
+    let comments = JSON.parse(localStorage.getItem(storageKey)) || [];
+    comments.unshift(comment);
+    localStorage.setItem(storageKey, JSON.stringify(comments));
+}
+</pre>
+
+            <h3>四、功能亮点</h3>
+            <p>1. <strong>样式脚本解耦</strong>：评论样式与逻辑分别放在独立文件，不影响原有网页代码。</p>
+            <p>2. <strong>多文章独立存储</strong>：通过文章唯一标识区分存储键名，不同文章评论互不干扰。</p>
+            <p>3. <strong>零后端依赖</strong>：基于 <code>localStorage</code> 实现，无需服务器和数据库，适合静态网页。</p>
+
+            <h3>五、总结</h3>
+            <p>本次更新通过原生 JS + localStorage 快速实现了静态网页的评论功能，且支持多文章独立存储，修改量少、扩展性强。后续若需实现多用户共享评论，可接入后端接口，将数据存储到服务器数据库中。</p>
+        </div>
+        <!-- 返回首页按钮 -->
+        <a href="index.html" class="back-home">返回首页</a>
+    </div>
+
+    <!-- 本日志的评论模块 -->
+    <div class="comment-section" data-article-id="article_comment_update">
+        <h2>评论区</h2>
+        <div class="comment-form">
+            <div class="form-item">
+                <label for="username">昵称：</label>
+                <input type="text" id="username" placeholder="请输入你的昵称" required>
+            </div>
+            <div class="form-item">
+                <label for="comment-content">评论内容：</label>
+                <textarea id="comment-content" rows="5" placeholder="请输入你的评论内容" required></textarea>
+            </div>
+            <button id="submit-comment">提交评论</button>
+        </div>
+        <div class="comment-list">
+            <h3>已有评论</h3>
+            <div id="comment-container"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/comment.js"></script>
+</body>
+</html>

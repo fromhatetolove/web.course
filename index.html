@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Web课程作业</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- 导航栏模块 -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <h1 class="blog-title">411组博客</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">联系方式</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 博客列表模块 -->
+    <div class="blog-container">
+        <!-- 博主信息模块 -->
+        <div class="author-info">
+            <h2>411组</h2>
+            <p>记录学习点滴</p>
+        </div>
+
+        <!-- 文章列表模块 -->
+        <div class="article-list">
+
+            <div class="article-item">
+                <h3 class="article-title"><a href="comment.html">【前端学习】网页添加独立评论功能</a></h3>
+                <p class="article-desc">添加了评论功能！记录在浏览器本地存储</p>
+            </div>
+
+            <div class="article-item">
+                <h3 class="article-title"><a href="deploy.html">【Linux学习】Nginx部署静态网页</a></h3>
+                <p class="article-desc">记录在Linux系统下如何快速部署静态网页</p>
+            </div>
+
+            <div class="article-item">
+                <h3 class="article-title"><a href="barcolor.html">基础JS应用：导航栏闪烁</a></h3>
+                <p class="article-desc">实现导航栏每0.05秒自动切换背景颜色</p>
+            </div>
+
+            <div class="article-item">
+                <h3 class="article-title"><a href="js.html">【Web学习】JavaScript应用</a></h3>
+                <p class="article-desc">JS是一个简单易用的WEB脚本语言</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 关于模块 -->
+    <div id="about" class="about-section">
+        <h2>关于我们</h2>
+        <p>我们是411组，这是我们的Web课程作业~</p>
+
+        <!-- 头像+名字 横向排列容器 -->
+        <div
+            style="margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 5rem; flex-wrap: wrap;">
+            
+            <div style="text-align: center;">
+                <img src="images/ljt.jpg" class="memb_avt">
+                <p style="margin-top: 0.5rem; font-weight: 500;">梁锦涛</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <img src="images/qjh.jpg" class="memb_avt">
+                <p style="margin-top: 0.5rem; font-weight: 500;">邱杰海</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <img src="images/zcr.jpg" class="memb_avt">
+                <p style="margin-top: 0.5rem; font-weight: 500;">张成荣</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <img src="images/wqx.jpg" class="memb_avt">
+                <p style="margin-top: 0.5rem; font-weight: 500;">吴其迅</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <img src="images/lgs.jpg" class="memb_avt">
+                <p style="margin-top: 0.5rem; font-weight: 500;">梁国胜</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <img src="images/lcy.jpg" class="memb_avt">
+                <p style="margin-top: 0.5rem; font-weight: 500;">刘昌源</p>
+            </div>
+
+            <div style="text-align: center;">
+                <img src="images/wzm.jpg" class="memb_avt">
+                <p style="margin-top: 0.5rem; font-weight: 500;">王志明</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系方式模块 -->
+    <div id="contact" class="contact-section">
+        <h2>联系方式</h2>
+        <p>邮箱：stumalex@outlook.com</p>
+        <p>GitHub：<a href="https://github.com/fromhatetolove/" style="color: blue;">https://github.com/fromhatetolove/</a></p>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>【Web学习】JS基础入门</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/comment.css">
+</head>
+<body>
+    <!-- 文章详情模块 -->
+    <div class="article-detail">
+        <h1>【Web学习】JS基础入门</h1>
+        <p class="article-meta">发布时间：2025-12-11 | 作者：梁锦涛</p>
+        <div class="article-content">
+            <h3>一、什么是JS</h3>
+            <p>JS（JavaScript）是一门运行在浏览器中的脚本语言，主要用于给网页添加交互效果，比如按钮点击、内容切换、数据验证等，是Web前端三大核心技术（HTML/CSS/JS）之一。</p>
+
+            <h3>二、JS基础语法（简单示例）</h3>
+            <p>JS代码可以直接写在HTML的&lt;script&gt;标签中，也可以外部引入（我们这里用内嵌方式，更易入门）。</p>
+
+            <h3>三、核心示例：按钮交互（最常用）</h3>
+            <p>下面是3个实用的按钮示例，直接复制即可运行，能直观看到JS的效果：</p>
+
+            <h4>示例1：按钮点击弹出提示框</h4>
+            <p>效果：点击按钮后，弹出文字提示窗口</p>
+            <!-- 按钮1 + 内嵌JS -->
+            <button onclick="alert('你点击了提示按钮！这是JS最基础的交互效果~')" style="padding: 8px 16px; margin: 10px 0; cursor: pointer; background: #3498db; color: white; border: none; border-radius: 4px;">
+                点击我弹出提示
+            </button>
+
+            <h4>示例2：按钮点击修改页面文字</h4>
+            <p>效果：点击按钮后，下方的文字内容会发生变化</p>
+            <!-- 显示文字的容器 -->
+            <p id="textBox" style="padding: 10px; border: 1px solid #eee; margin: 10px 0;">这是原始文字，点击按钮修改我~</p>
+            <!-- 按钮2 + 关联JS函数 -->
+            <button onclick="changeText()" style="padding: 8px 16px; margin: 10px 0; cursor: pointer; background: #3498db; color: white; border: none; border-radius: 4px;">
+                点击我修改文字
+            </button>
+
+            <h4>示例3：按钮点击切换背景颜色</h4>
+            <p>效果：点击按钮后，当前文章区域的背景颜色会随机切换</p>
+            <button onclick="changeBgColor()" style="padding: 8px 16px; margin: 10px 0; cursor: pointer; background: #3498db; color: white; border: none; border-radius: 4px;">
+                点击我切换背景色
+            </button>
+
+            <h3>四、示例对应的JS代码解释</h3>
+            <p>上面的按钮交互对应的JS代码如下，所有功能都简单易懂：</p>
+            <pre style="background-color: #f5f5f5; padding: 15px; border-radius: 4px; color: #333; margin: 10px 0; font-size: 14px; font-family: monospace;">
+// 示例2：修改文字的函数
+function changeText() {
+    // 获取id为textBox的元素，修改它的文字内容
+    document.getElementById("textBox").innerText = "我被JS修改啦！是不是很神奇~";
+}
+
+// 示例3：切换背景颜色的函数
+function changeBgColor() {
+    // 定义一组颜色值
+    const colors = ["#f0f8ff", "#f5fafe", "#e8f4f8", "#faf0e6", "#f5f5dc"];
+    // 随机获取一个颜色索引
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    // 获取文章详情区域，修改背景色
+    document.querySelector(".article-detail").style.backgroundColor = colors[randomIndex];
+}
+            </pre>
+
+            <h3>五、JS基础总结</h3>
+            <p>1. JS的核心作用是实现网页交互，让静态页面“动”起来</p>
+            <p>2. 按钮点击是最常用的交互场景，通过`onclick`属性绑定JS函数即可实现</p>
+            <p>3. `document.getElementById()`和`document.querySelector()`是获取页面元素的常用方法</p>
+            <p>4. 通过`innerText`修改文字内容，通过`style`属性修改元素样式</p>
+        </div>
+        <!-- 返回首页按钮 -->
+        <a href="index.html" class="back-home">返回首页</a>
+    </div>
+
+    <!-- 评论功能模块 -->
+    <div class="comment-section" data-article-id="article_js">
+        <h2>评论区</h2>
+        <!-- 评论输入表单 -->
+        <div class="comment-form">
+            <div class="form-item">
+                <label for="username">昵称：</label>
+                <input type="text" id="username" placeholder="请输入你的昵称" required>
+            </div>
+            <div class="form-item">
+                <label for="comment-content">评论内容：</label>
+                <textarea id="comment-content" rows="5" placeholder="请输入你的评论内容" required></textarea>
+            </div>
+            <button id="submit-comment">提交评论</button>
+        </div>
+
+        <!-- 评论列表展示 -->
+        <div class="comment-list">
+            <h3>已有评论</h3>
+            <div id="comment-container"></div>
+        </div>
+    </div>
+
+    <!-- 内嵌JS代码 -->
+    <script>
+        // 示例2：修改文字的函数
+        function changeText() {
+            document.getElementById("textBox").innerText = "我被JS修改啦！是不是很神奇~";
+        }
+
+        // 示例3：切换背景颜色的函数
+        function changeBgColor() {
+            const colors = ["#f0f8ff", "#f5fafe", "#e8f4f8", "#faf0e6", "#f5f5dc"];
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            document.querySelector(".article-detail").style.backgroundColor = colors[randomIndex];
+        }
+    </script>
+    <script src="js/comment.js"></script>
+</body>
+</html>

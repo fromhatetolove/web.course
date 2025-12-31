@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>【Linux学习】Nginx部署静态网页</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/comment.css">
+</head>
+<body>
+    <!-- 文章详情模块 -->
+    <div class="article-detail">
+        <h1>【Linux学习】Nginx部署静态网页</h1>
+        <p class="article-meta">发布时间：2025-12-16 | 作者：梁锦涛</p>
+        <div class="article-content">
+            <h3>一、准备工作</h3>
+            <p>1. 拥有一台Linux电脑</p>
+            <p>2. 安装Nginx：sudo (包管理器) install nginx -y</p>
+            <p>3. 启动Nginx：sudo systemctl start nginx</p>
+
+            <h3>二、部署步骤</h3>
+            <p>1. 将博客文件放到 /usr/share/nginx/html 目录下</p>
+            <p>2. 重启Nginx：sudo systemctl restart nginx</p>
+            <p>3. 访问服务器IP，即可看到博客页面</p>
+
+            <h3>三、总结</h3>
+            <p>Linux下部署静态博客超级简单，这就是我们的学习记录，希望对大家有帮助~</p>
+        </div>
+        <!-- 返回首页按钮 -->
+        <a href="index.html" class="back-home">返回首页</a>
+    </div>
+
+    <!-- 评论功能模块 -->
+    <div class="comment-section" data-article-id="article_nginx">
+        <h2>评论区</h2>
+        <!-- 评论输入表单 -->
+        <div class="comment-form">
+            <div class="form-item">
+                <label for="username">昵称：</label>
+                <input type="text" id="username" placeholder="请输入你的昵称" required>
+            </div>
+            <div class="form-item">
+                <label for="comment-content">评论内容：</label>
+                <textarea id="comment-content" rows="5" placeholder="请输入你的评论内容" required></textarea>
+            </div>
+            <button id="submit-comment">提交评论</button>
+        </div>
+
+        <!-- 评论列表展示 -->
+        <div class="comment-list">
+            <h3>已有评论</h3>
+            <div id="comment-container"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/comment.js"></script>
+</body>
+</html>
