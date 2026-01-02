@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>【Linux学习】Nginx部署静态网页</title>
-    <!-- 按顺序引入：全局样式 → 文章统一样式 → 评论样式，确保无冲突且居中 -->
+    <!-- 按顺序引入全局、文章、评论样式文件 -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/article.css">
     <link rel="stylesheet" href="css/comment.css">
 </head>
+
 <body>
     <!-- 文章详情模块 -->
     <div class="article-detail">
@@ -27,11 +29,11 @@
             <h3>三、总结</h3>
             <p>Linux下部署静态博客超级简单，这就是我们的学习记录，希望对大家有帮助~</p>
         </div>
-        <!-- 返回首页按钮 - 样式由article.css统一控制 -->
+        <!-- 返回首页按钮 -->
         <a href="index.html" class="back-home">返回首页</a>
     </div>
 
-    <!-- 评论功能模块 - 由comment.css控制居中及样式 -->
+    <!-- 评论功能模块（带文章唯一标识） -->
     <div class="comment-section" data-article-id="article_nginx">
         <h2>评论区</h2>
         <!-- 评论输入表单 -->
@@ -54,7 +56,9 @@
         </div>
     </div>
 
+    <!-- 按顺序引入全局、评论脚本文件 -->
     <script src="js/main.js"></script>
     <script src="js/comment.js"></script>
 </body>
+
 </html>

@@ -1,104 +1,112 @@
-/* 全局样式 - 零几年风格重置 */
+/* 全局样式重置与基础配置 */
 * {
     margin: 0;
     padding: 0;
-    /* 去掉现代box-sizing，还原旧版盒模型 */
-    font-family: "宋体", "SimSun", "黑体", "SimHei", Arial, sans-serif; /* 零几年主流中文字体 */
+    font-family: "宋体", "SimSun", "黑体", "SimHei", Arial, sans-serif;
 }
 
+/* 页面主体样式 */
 body {
-    background-color: #e6e6e6; /* 旧版网页常见浅灰背景 */
-    background-image: url("data:image/gif;base64,R0lGODlhBgAGAPEAAP///wAAAPDw8IqKiuDg4Ojp6egAAAFhYWCQkJKysrL6+vhAAACH5BAAAAAAALAAAAAAGAAYAAAIODA4hJxJkkZ4pmZgkAQA7"); /* 像素化小背景图，旧版特色 */
-    color: #000000; /* 旧版以纯黑文字为主 */
-    line-height: 1.4; /* 更紧凑的行高 */
-    font-size: 14px; /* 零几年常见字体大小 */
+    background-color: #e6e6e6;
+    background-image: url("data:image/gif;base64,R0lGODlhBgAGAPEAAP///wAAAPDw8IqKiuDg4Ojp6egAAAFhYWCQkJKysrL6+vhAAACH5BAAAAAAALAAAAAAGAAYAAAIODA4hJxJkkZ4pmZgkAQA7");
+    color: #000000;
+    line-height: 1.4;
+    font-size: 14px;
 }
 
-/* 顶部图片 - 旧版样式 */
+/* 顶部图片样式 */
 .top-img {
     display: block;
-    width: 960px; /* 固定宽度，旧版网页不做自适应 */
-    height: 100px; /* 固定高度，替代vh单位（旧版浏览器不支持） */
+    width: 960px;
+    height: 100px;
     margin: 0 auto;
-    border: 1px solid #999; /* 图片加边框，旧版常见样式 */
+    border: 1px solid #999;
 }
 
-/* 导航栏样式 - 零几年经典导航 */
+/* 导航栏容器样式 */
 .nav-bar {
-    background-color: #003366; /* 旧版常用深蓝色导航 */
+    background-color: #003366;
     color: #ffffff;
     width: 960px;
     margin: 5px auto;
-    height: 35px; /* 固定高度导航栏 */
-    border: 1px solid #000000; /* 导航栏加黑色边框 */
+    height: 35px;
+    border: 1px solid #000000;
 }
 
+/* 导航栏内部容器样式 */
 .nav-container {
     width: 100%;
     height: 100%;
-    display: block; /* 去掉flex，用旧版布局 */
+    display: block;
     text-align: center;
-    line-height: 35px; /* 行高居中，旧版常用方法 */
+    line-height: 35px;
 }
 
+/* 导航菜单列表样式 */
 .nav-menu {
     list-style: none;
-    display: inline-block; /* 旧版横向列表实现 */
+    display: inline-block;
 }
 
+/* 导航菜单项样式 */
 .nav-menu li {
-    float: left; /* 左浮动实现横向排列，零几年核心布局方式 */
-    margin: 0 15px; /* 调整间距，更贴合旧版风格 */
+    float: left;
+    margin: 0 15px;
 }
 
+/* 导航链接默认样式 */
 .nav-menu a {
-    color: #ffff00; /* 导航链接用亮黄色，旧版醒目风格 */
-    text-decoration: underline; /* 旧版链接默认带下划线 */
+    color: #ffff00;
+    text-decoration: underline;
     font-size: 14px;
     font-weight: bold;
 }
 
+/* 导航链接悬浮样式 */
 .nav-menu a:hover {
-    color: #ff6600; /*  hover用橙色，旧版常见高亮色 */
-    text-decoration: none; /*  hover时去掉下划线，经典交互 */
+    color: #ff6600;
+    text-decoration: none;
 }
 
-/* 博客容器样式 - 固定宽度居中 */
+/* 博客容器样式 */
 .blog-container {
-    width: 960px; /* 零几年网页标准固定宽度 */
+    width: 960px;
     margin: 10px auto;
-    background-color: #ffffff; /* 白色内容区，旧版经典布局 */
-    border: 1px solid #cccccc; /* 内容区灰色边框 */
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
     padding: 10px;
 }
 
-/* 文章列表样式 */
+/* 文章列表容器样式 */
 .article-list {
     width: 100%;
     margin: 0 auto;
 }
 
+/* 单篇文章项样式 */
 .article-item {
-    background-color: #f0f8ff; /* 浅蓝背景，旧版文章项样式 */
+    background-color: #f0f8ff;
     padding: 15px;
-    margin-bottom: 10px; /* 缩小间距，更紧凑 */
-    border: 1px dashed #6699cc; /* 虚线边框，零几年特色样式 */
+    margin-bottom: 10px;
+    border: 1px dashed #6699cc;
 }
 
+/* 文章标题样式 */
 .article-title {
-    color: #cc0000; /* 文章标题用红色，旧版醒目风格 */
+    color: #cc0000;
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
-    text-decoration: underline; /* 标题下划线，旧版常见 */
+    text-decoration: underline;
 }
 
+/* 文章描述文本样式 */
 .article-desc {
     color: #333333;
     font-size: 14px;
 }
 
-/* 关于和联系方式样式 */
+/* 关于和联系方式公共样式 */
 .about-section,
 .contact-section {
     width: 960px;
@@ -108,11 +116,12 @@ body {
     border: 1px solid #cccccc;
 }
 
+/* 关于和联系方式标题样式 */
 .about-section h2,
 .contact-section h2 {
-    color: #003366; /* 标题深蓝色，旧版经典色 */
+    color: #003366;
     margin-bottom: 10px;
-    border-bottom: 2px solid #cc0000; /* 红色下划线标题 */
+    border-bottom: 2px solid #cc0000;
     padding-bottom: 5px;
     font-size: 18px;
     font-weight: bold;
@@ -122,33 +131,35 @@ body {
 .memb_avt {
     width: 80px;
     height: 80px;
-    border-radius: 0; /* 去掉圆角，零几年几乎不用圆角 */
+    border-radius: 0;
     object-fit: cover;
-    border: 2px solid #003366; /* 深蓝色边框，替代圆角 */
+    border: 2px solid #003366;
 }
 
-/* 链接样式 - 旧版蓝色下划线 */
+/* 全局链接默认样式 */
 a {
-    color: #0000ff; /* 纯蓝链接，旧版默认样式 */
-    text-decoration: underline; /* 强制下划线 */
+    color: #0000ff;
+    text-decoration: underline;
 }
 
+/* 全局链接悬浮样式 */
 a:hover {
-    color: #ff0000; /*  hover变红，经典旧版交互 */
+    color: #ff0000;
     text-decoration: none;
 }
 
-/* 去掉现代响应式，还原旧版固定布局 */
+/* 返回首页按钮样式 */
 .back-home {
     display: inline-block;
     margin-top: 15px;
     padding: 6px 12px;
-    background-color: #cccccc; /* 灰色按钮，旧版样式 */
+    background-color: #cccccc;
     color: #000000;
     text-decoration: none;
-    border: 1px solid #000000; /* 按钮加黑色边框 */
+    border: 1px solid #000000;
 }
 
+/* 返回首页按钮悬浮样式 */
 .back-home:hover {
     background-color: #999999;
     color: #ffffff;

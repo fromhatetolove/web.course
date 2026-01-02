@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>网页添加独立评论功能</title>
-    <!-- 按顺序引入全局样式、文章样式、评论样式 -->
+    <!-- 按顺序引入全局、文章、评论样式文件 -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/article.css">
     <link rel="stylesheet" href="css/comment.css">
 </head>
+
 <body>
-    <!-- 文章详情模块 - 由article.css统一控制居中及样式 -->
+    <!-- 文章详情模块 -->
     <div class="article-detail">
         <h1>【前端学习】网页添加独立评论功能</h1>
         <p class="article-meta">发布时间：2025-12-29 | 作者：梁锦涛</p>
@@ -25,7 +27,7 @@
             <h4>1. 评论功能 HTML 结构搭建</h4>
             <p>在原有网页底部新增评论模块，包含「昵称输入框」「评论内容文本域」「提交按钮」和「评论列表展示区」，并通过 <code>data-article-id</code> 属性实现多文章独立标识。</p>
             <p>核心代码片段：</p>
-<pre>
+            <pre>
 &lt;!-- 评论功能模块（带文章唯一标识） --&gt;
 &lt;div class="comment-section" data-article-id="article_nginx"&gt;
     &lt;h2&gt;评论区&lt;/h2&gt;
@@ -52,7 +54,7 @@
 
             <h4>2. 独立样式文件（css/comment.css）</h4>
             <p>将评论区所有样式独立拆分至 <code>css/comment.css</code>，避免与原有样式冲突，核心样式片段（按钮与评论卡片）：</p>
-<pre>
+            <pre>
 /* 提交按钮样式 */
 #submit-comment {
     margin-left: 80px;
@@ -86,8 +88,9 @@
 </pre>
 
             <h4>3. 核心 JS 逻辑（多文章独立关键）</h4>
-            <p>修改 <code>js/comment.js</code>，通过 <code>data-article-id</code> 获取文章唯一标识，拼接成 <code>localStorage</code> 的存储键名，实现多文章评论隔离，核心代码片段：</p>
-<pre>
+            <p>修改 <code>js/comment.js</code>，通过 <code>data-article-id</code> 获取文章唯一标识，拼接成 <code>localStorage</code>
+                的存储键名，实现多文章评论隔离，核心代码片段：</p>
+            <pre>
 // 获取文章唯一标识
 const commentSection = document.querySelector('.comment-section');
 const articleId = commentSection.dataset.articleId;
@@ -113,7 +116,7 @@ function saveComment(comment) {
         <a href="index.html" class="back-home">返回首页</a>
     </div>
 
-    <!-- 评论模块 - 由comment.css控制居中及样式 -->
+    <!-- 评论模块（带文章唯一标识） -->
     <div class="comment-section" data-article-id="article_comment_update">
         <h2>评论区</h2>
         <div class="comment-form">
@@ -133,7 +136,9 @@ function saveComment(comment) {
         </div>
     </div>
 
+    <!-- 按顺序引入全局、评论脚本文件 -->
     <script src="js/main.js"></script>
     <script src="js/comment.js"></script>
 </body>
+
 </html>

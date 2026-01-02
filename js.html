@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>【Web学习】JS基础入门</title>
-    <!-- 按统一顺序引入样式：全局 → 文章通用 → 评论，确保居中且风格统一 -->
+    <!-- 按顺序引入全局、文章、评论样式文件 -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/article.css">
     <link rel="stylesheet" href="css/comment.css">
 </head>
+
 <body>
-    <!-- 文章详情模块 - 由article.css控制居中及复古样式 -->
+    <!-- 文章详情模块 -->
     <div class="article-detail">
         <h1>【Web学习】JS基础入门</h1>
         <p class="article-meta">发布时间：2025-12-11 | 作者：梁锦涛</p>
@@ -25,30 +27,30 @@
 
             <h4>示例1：按钮点击弹出提示框</h4>
             <p>效果：点击按钮后，弹出文字提示窗口</p>
-            <!-- 按钮1 - 替换现代内联样式为复古样式，移除圆角 -->
-            <button onclick="alert('你点击了提示按钮！这是JS最基础的交互效果~')" style="padding: 6px 12px; margin: 10px 0; cursor: pointer; background: #003366; color: white; border: 1px solid #000000; font-family: 宋体; font-size: 14px;">
+            <button onclick="alert('你点击了提示按钮！这是JS最基础的交互效果~')"
+                style="padding: 6px 12px; margin: 10px 0; cursor: pointer; background: #003366; color: white; border: 1px solid #000000; font-family: 宋体; font-size: 14px;">
                 点击我弹出提示
             </button>
 
             <h4>示例2：按钮点击修改页面文字</h4>
             <p>效果：点击按钮后，下方的文字内容会发生变化</p>
-            <!-- 显示文字的容器 - 替换现代内联样式为复古样式，移除圆角 -->
-            <p id="textBox" style="padding: 10px; border: 1px solid #cccccc; margin: 10px 0; background: #f0f8ff; font-family: 宋体; font-size: 14px;">这是原始文字，点击按钮修改我~</p>
-            <!-- 按钮2 - 替换现代内联样式为复古样式，移除圆角 -->
-            <button onclick="changeText()" style="padding: 6px 12px; margin: 10px 0; cursor: pointer; background: #003366; color: white; border: 1px solid #000000; font-family: 宋体; font-size: 14px;">
+            <p id="textBox"
+                style="padding: 10px; border: 1px solid #cccccc; margin: 10px 0; background: #f0f8ff; font-family: 宋体; font-size: 14px;">
+                这是原始文字，点击按钮修改我~</p>
+            <button onclick="changeText()"
+                style="padding: 6px 12px; margin: 10px 0; cursor: pointer; background: #003366; color: white; border: 1px solid #000000; font-family: 宋体; font-size: 14px;">
                 点击我修改文字
             </button>
 
             <h4>示例3：按钮点击切换背景颜色</h4>
             <p>效果：点击按钮后，当前文章区域的背景颜色会随机切换</p>
-            <!-- 按钮3 - 替换现代内联样式为复古样式，移除圆角 -->
-            <button onclick="changeBgColor()" style="padding: 6px 12px; margin: 10px 0; cursor: pointer; background: #003366; color: white; border: 1px solid #000000; font-family: 宋体; font-size: 14px;">
+            <button onclick="changeBgColor()"
+                style="padding: 6px 12px; margin: 10px 0; cursor: pointer; background: #003366; color: white; border: 1px solid #000000; font-family: 宋体; font-size: 14px;">
                 点击我切换背景色
             </button>
 
             <h3>四、示例对应的JS代码解释</h3>
             <p>上面的按钮交互对应的JS代码如下，所有功能都简单易懂：</p>
-            <!-- 代码块 - 移除现代内联样式，由article.css统一控制复古样式 -->
             <pre>
 // 示例2：修改文字的函数
 function changeText() {
@@ -73,11 +75,11 @@ function changeBgColor() {
             <p>3. `document.getElementById()`和`document.querySelector()`是获取页面元素的常用方法</p>
             <p>4. 通过`innerText`修改文字内容，通过`style`属性修改元素样式</p>
         </div>
-        <!-- 返回首页按钮 - 由article.css统一控制样式 -->
+        <!-- 返回首页按钮 -->
         <a href="index.html" class="back-home">返回首页</a>
     </div>
 
-    <!-- 评论功能模块 - 由comment.css控制居中及样式 -->
+    <!-- 评论功能模块（带文章唯一标识） -->
     <div class="comment-section" data-article-id="article_js">
         <h2>评论区</h2>
         <!-- 评论输入表单 -->
@@ -100,7 +102,7 @@ function changeBgColor() {
         </div>
     </div>
 
-    <!-- 内嵌JS代码 - 功能完全保留 -->
+    <!-- 内嵌JS脚本（按钮交互功能） -->
     <script>
         // 示例2：修改文字的函数
         function changeText() {
@@ -114,6 +116,8 @@ function changeBgColor() {
             document.querySelector(".article-detail").style.backgroundColor = colors[randomIndex];
         }
     </script>
+    <!-- 引入评论脚本文件 -->
     <script src="js/comment.js"></script>
 </body>
+
 </html>

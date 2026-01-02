@@ -104,7 +104,8 @@
     font-family: "宋体", "SimHei", sans-serif;
 }
 
-#username:focus, #comment-content:focus {
+#username:focus,
+#comment-content:focus {
     outline: none;
     border-color: #cc0000;
 }
