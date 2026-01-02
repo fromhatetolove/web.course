@@ -56,7 +56,7 @@ body {
 /* 导航链接默认样式 */
 .nav-menu a {
     color: #ffff00;
-    text-decoration: underline;
+    text-decoration: none;
     font-size: 14px;
     font-weight: bold;
 }
@@ -64,7 +64,6 @@ body {
 /* 导航链接悬浮样式 */
 .nav-menu a:hover {
     color: #ff6600;
-    text-decoration: none;
 }
 
 /* 博客容器样式 */
@@ -96,7 +95,7 @@ body {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /* 文章描述文本样式 */
