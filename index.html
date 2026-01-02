@@ -7,10 +7,17 @@
 </head>
 
 <body>
+    <!-- TOP图片 -->
+    <img src="images/gltu.jpg" style="
+    display: block; 
+    object-fit: cover;
+    width: 100%;
+    height: 12vh; 
+    ">
+
     <!-- 导航栏模块 -->
     <nav class="nav-bar">
         <div class="nav-container">
-            <h1 class="blog-title">411组博客</h1>
             <ul class="nav-menu">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="#about">关于</a></li>
@@ -21,34 +28,29 @@
 
     <!-- 博客列表模块 -->
     <div class="blog-container">
-        <!-- 博主信息模块 -->
-        <div class="author-info">
-            <h2>411组</h2>
-            <p>记录学习点滴</p>
-        </div>
 
         <!-- 文章列表模块 -->
         <div class="article-list">
-
+            <a href="comment.html" style="text-decoration: none;">
             <div class="article-item">
-                <h3 class="article-title"><a href="comment.html">【前端学习】网页添加独立评论功能</a></h3>
+                <h3 class="article-title">【前端学习】网页添加独立评论功能</h3>
                 <p class="article-desc">添加了评论功能！记录在浏览器本地存储</p>
             </div>
+            </a>
 
+            <a href="deploy.html" style="text-decoration: none;">
             <div class="article-item">
-                <h3 class="article-title"><a href="deploy.html">【Linux学习】Nginx部署静态网页</a></h3>
+                <h3 class="article-title">【Linux学习】Nginx部署静态网页</h3>
                 <p class="article-desc">记录在Linux系统下如何快速部署静态网页</p>
             </div>
+            </a>
 
+            <a href="js.html" style="text-decoration: none;">
             <div class="article-item">
-                <h3 class="article-title"><a href="barcolor.html">基础JS应用：导航栏闪烁</a></h3>
-                <p class="article-desc">实现导航栏每0.05秒自动切换背景颜色</p>
-            </div>
-
-            <div class="article-item">
-                <h3 class="article-title"><a href="js.html">【Web学习】JavaScript应用</a></h3>
+                <h3 class="article-title">【Web学习】JavaScript应用</h3>
                 <p class="article-desc">JS是一个简单易用的WEB脚本语言</p>
             </div>
+            </a>
 
         </div>
     </div>
