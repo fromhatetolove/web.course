@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // 获取评论区及当前文章唯一ID
     const commentSection = document.querySelector('.comment-section');
     const articleId = commentSection.dataset.articleId;
-    // 拼接当前文章的本地存储键名（按文章ID区分）
-    const storageKey = `${articleId}_comments`;
+    // 根目录评论JSON文件路径（全局评论表）
+    const commentJsonPath = '../comments.json'; // 对应根目录，若js在根目录直接写 'comments.json'
 
     // 初始化加载当前文章的评论
     loadComments();
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // 保存评论并重新加载列表
-        saveComment(commentObj);
+        saveComment(articleId, commentObj);
         // 清空输入框
         usernameInput.value = '';
         commentContentInput.value = '';
@@ -44,31 +44,74 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('评论提交成功！');
     });
 
-    // 保存评论到对应文章的本地存储
-    function saveComment(comment) {
-        // 获取当前文章已存评论，无则返回空数组
-        let comments = JSON.parse(localStorage.getItem(storageKey)) || [];
-        // 新评论插入到列表头部
-        comments.unshift(comment);
-        // 重新存储评论到本地
-        localStorage.setItem(storageKey, JSON.stringify(comments));
+    /**
+     * 保存评论到根目录JSON文件（按文章ID分组存储）
+     * @param {string} articleId - 文章唯一标识
+     * @param {object} comment - 评论对象
+     */
+    function saveComment(articleId, comment) {
+        // 先读取现有评论文件（若无则初始化空对象）
+        let commentsData = {};
+        try {
+            // 读取本地JSON文件
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', commentJsonPath, false); // 同步请求，确保读取完成再操作
+            xhr.send(null);
+            if (xhr.status === 200) {
+                commentsData = JSON.parse(xhr.responseText);
+            }
+        } catch (err) {
+            // 文件不存在时，初始化空对象（后续会自动创建）
+            commentsData = {};
+        }
+
+        // 初始化当前文章的评论数组（若无则创建空数组）
+        if (!commentsData[articleId]) {
+            commentsData[articleId] = [];
+        }
+
+        // 新评论插入到列表头部（最新评论在前）
+        commentsData[articleId].unshift(comment);
+
+        // 将更新后的评论数据写入JSON文件
+        const xhr = new XMLHttpRequest();
+        xhr.open('PUT', commentJsonPath, false); // 同步写入
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+        xhr.send(JSON.stringify(commentsData, null, 2)); // 格式化JSON，便于查看
     }
 
-    // 加载对应文章的本地评论并渲染到页面
+    /**
+     * 加载对应文章的评论并渲染到页面
+     */
     function loadComments() {
         // 清空现有评论容器
         commentContainer.innerHTML = '';
-        // 获取当前文章的评论列表
-        let comments = JSON.parse(localStorage.getItem(storageKey)) || [];
+        // 初始化当前文章评论列表
+        let articleComments = [];
+
+        try {
+            // 读取根目录JSON评论文件
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', commentJsonPath, false);
+            xhr.send(null);
+            if (xhr.status === 200) {
+                const commentsData = JSON.parse(xhr.responseText);
+                // 获取当前文章的评论（若无则为空数组）
+                articleComments = commentsData[articleId] || [];
+            }
+        } catch (err) {
+            // 文件不存在或读取失败时，评论列表为空
+            articleComments = [];
+        }
 
         // 无评论时显示提示文本
-        if (comments.length === 0) {
+        if (articleComments.length === 0) {
             commentContainer.innerHTML = '<p style="color:#999;">暂无评论，欢迎发表你的看法~</p>';
             return;
         }
 
         // 遍历评论列表，创建DOM并添加到容器
-        comments.forEach(comment => {
+        articleComments.forEach(comment => {
             const commentItem = document.createElement('div');
             commentItem.className = 'single-comment';
             commentItem.innerHTML = `
@@ -80,7 +123,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 获取格式化的当前时间（年-月-日 时:分:秒）
+    /**
+     * 获取格式化的当前时间（年-月-日 时:分:秒）
+     * @returns {string} 格式化后的时间字符串
+     */
     function getCurrentTime() {
         const now = new Date();
         const year = now.getFullYear();

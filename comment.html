@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>网页添加独立评论功能</title>
+    <title>【Web学习】本地JSON存储文章评论</title>
     <!-- 按顺序引入全局、文章、评论样式文件 -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/article.css">
@@ -11,114 +11,232 @@
 </head>
 
 <body>
-    <!-- 文章详情模块 -->
+    <!-- 文章详情模块（学习记录+核心代码+示例嵌入） -->
     <div class="article-detail">
-        <h1>【前端学习】网页添加独立评论功能</h1>
-        <p class="article-meta">发布时间：2025-12-29 | 作者：梁锦涛</p>
+        <h1>【Web学习】本地JSON存储文章评论</h1>
+        <p class="article-meta">发布时间：2026-01-02 | 作者：梁锦涛</p>
         <div class="article-content">
-            <h3>一、更新背景</h3>
-            <p>此前已完成 Linux 下 Nginx 部署静态网页的实现，为提升静态博客的交互性，给博客添加评论功能，且需支持多文章评论独立存储，互相不干扰。</p>
+            <h3>一、什么是本地JSON存储评论</h3>
+            <p>本地JSON存储评论是一种无需数据库的轻量化方案，通过JSON文件作为数据载体，存储用户提交的评论信息，再通过JavaScript读取和写入JSON文件，配合Python简易服务器实现本地调试，适合静态博客、学习项目等小型场景。
+            </p>
 
-            <h3>二、核心实现技术</h3>
-            <p>采用浏览器本地存储 <code>localStorage</code> 实现评论持久化，配合原生 JavaScript 完成交互逻辑，样式与脚本独立拆分，不污染原有项目文件。</p>
-            <p>优势：无需后端服务器与数据库，实现简单、访问快速，数据持久化存储（除非手动清除浏览器缓存）。</p>
-
-            <h3>三、关键实现步骤</h3>
-            <h4>1. 评论功能 HTML 结构搭建</h4>
-            <p>在原有网页底部新增评论模块，包含「昵称输入框」「评论内容文本域」「提交按钮」和「评论列表展示区」，并通过 <code>data-article-id</code> 属性实现多文章独立标识。</p>
-            <p>核心代码片段：</p>
-            <pre>
-&lt;!-- 评论功能模块（带文章唯一标识） --&gt;
-&lt;div class="comment-section" data-article-id="article_nginx"&gt;
+            <h3>二、核心准备（文件结构+关键标签）</h3>
+            <p>首先要准备好文件结构和核心HTML标签，这是实现功能的基础：</p>
+            <h4>1. 必备文件结构</h4>
+            <p>根目录：HTML文件、comments.json（存储评论）、python_server.py（本地服务器）</p>
+            <p>css目录：style.css、article.css、comment.css（样式文件）</p>
+            <p>js目录：comment.js（评论核心逻辑）</p>
+            <h4>2. 关键HTML标签：文章唯一标识</h4>
+            <p>给评论区添加data-article-id属性，实现多文章评论隔离，代码如下：</p>
+            <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0; font-size: 14px;">
+&lt;div class="comment-section" data-article-id="article_json_comment"&gt;
     &lt;h2&gt;评论区&lt;/h2&gt;
-    &lt;!-- 评论输入表单 --&gt;
-    &lt;div class="comment-form"&gt;
-        &lt;div class="form-item"&gt;
-            &lt;label for="username"&gt;昵称：&lt;/label&gt;
-            &lt;input type="text" id="username" placeholder="请输入你的昵称" required&gt;
-        &lt;/div&gt;
-        &lt;div class="form-item"&gt;
-            &lt;label for="comment-content"&gt;评论内容：&lt;/label&gt;
-            &lt;textarea id="comment-content" rows="5" placeholder="请输入你的评论内容" required&gt;&lt;/textarea&gt;
-        &lt;/div&gt;
-        &lt;button id="submit-comment"&gt;提交评论&lt;/button&gt;
-    &lt;/div&gt;
-
-    &lt;!-- 评论列表展示 --&gt;
-    &lt;div class="comment-list"&gt;
-        &lt;h3&gt;已有评论&lt;/h3&gt;
-        &lt;div id="comment-container"&gt;&lt;/div&gt;
-    &lt;/div&gt;
+    <!-- 评论表单 + 评论列表 -->
 &lt;/div&gt;
-</pre>
+            </pre>
 
-            <h4>2. 独立样式文件（css/comment.css）</h4>
-            <p>将评论区所有样式独立拆分至 <code>css/comment.css</code>，避免与原有样式冲突，核心样式片段（按钮与评论卡片）：</p>
-            <pre>
-/* 提交按钮样式 */
-#submit-comment {
-    margin-left: 80px;
-    padding: 10px 20px;
-    background-color: #2f5496;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+            <h3>三、核心示例：评论提交与渲染（关键代码）</h3>
+            <p>下面是实现评论功能的核心JS代码和Python服务器代码，直接复制即可使用，先看JS核心逻辑：</p>
+
+            <h4>示例1：JS构造评论对象（非空验证+格式化时间）</h4>
+            <p>功能：获取用户输入，验证非空，构造包含唯一ID和格式化时间的评论对象</p>
+            <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0; font-size: 14px;">
+// 获取输入框和按钮元素
+const usernameInput = document.getElementById('username');
+const commentContentInput = document.getElementById('comment-content');
+const submitBtn = document.getElementById('submit-comment');
+
+// 按钮点击事件
+submitBtn.addEventListener('click', function () {
+    // 获取并去除首尾空格
+    const username = usernameInput.value.trim();
+    const commentContent = commentContentInput.value.trim();
+
+    // 非空验证
+    if (!username || !commentContent) {
+        alert('昵称和评论内容不能为空，请填写完整！');
+        return;
+    }
+
+    // 构造评论对象
+    const commentObj = {
+        id: Date.now(), // 时间戳作为唯一ID
+        username: username,
+        content: commentContent,
+        time: getCurrentTime() // 格式化时间
+    };
+
+    alert('评论构造成功！');
+});
+
+// 格式化当前时间（年-月-日 时:分:秒）
+function getCurrentTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+            </pre>
+
+            <h4>示例2：JS读写JSON文件（保存+加载评论）</h4>
+            <p>功能：通过XMLHttpRequest同步请求，读取现有评论并写入新评论，按文章ID分组</p>
+            <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0; font-size: 14px;">
+// 评论JSON文件路径
+const commentJsonPath = 'comments.json';
+// 获取文章唯一ID
+const articleId = document.querySelector('.comment-section').dataset.articleId;
+
+// 保存评论到JSON文件
+function saveComment(articleId, comment) {
+    let commentsData = {};
+    // 读取现有评论
+    try {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', commentJsonPath, false);
+        xhr.send(null);
+        if (xhr.status === 200) {
+            commentsData = JSON.parse(xhr.responseText);
+        }
+    } catch (err) {
+        commentsData = {}; // 文件不存在时初始化空对象
+    }
+
+    // 按文章ID分组存储
+    if (!commentsData[articleId]) {
+        commentsData[articleId] = [];
+    }
+    commentsData[articleId].unshift(comment); // 最新评论在前
+
+    // 写入JSON文件
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', commentJsonPath, false);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+    xhr.send(JSON.stringify(commentsData, null, 2));
 }
 
-#submit-comment:hover {
-    background-color: #1f3a6b;
+// 加载并渲染评论
+function loadComments() {
+    const commentContainer = document.getElementById('comment-container');
+    commentContainer.innerHTML = '';
+    let articleComments = [];
+
+    // 读取评论
+    try {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', commentJsonPath, false);
+        xhr.send(null);
+        if (xhr.status === 200) {
+            const commentsData = JSON.parse(xhr.responseText);
+            articleComments = commentsData[articleId] || [];
+        }
+    } catch (err) {
+        articleComments = [];
+    }
+
+    // 无评论提示
+    if (articleComments.length === 0) {
+        commentContainer.innerHTML = '&lt;p style="color:#999;"&gt;暂无评论，欢迎发表你的看法~&lt;/p&gt;';
+        return;
+    }
+
+    // 渲染评论列表
+    articleComments.forEach(comment => {
+        const commentItem = document.createElement('div');
+        commentItem.className = 'single-comment';
+        commentItem.innerHTML = `
+            &lt;div class="comment-username"&gt;${comment.username}&lt;/div&gt;
+            &lt;div class="comment-time"&gt;${comment.time}&lt;/div&gt;
+            &lt;div class="comment-text"&gt;${comment.content}&lt;/div&gt;
+        `;
+        commentContainer.appendChild(commentItem);
+    });
 }
+            </pre>
 
-/* 单个评论卡片样式 */
-.single-comment {
-    padding: 15px;
-    margin-bottom: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    background-color: #fff;
-}
+            <h4>示例3：Python简易服务器（处理JSON读写+静态托管）</h4>
+            <p>功能：解决本地JSON读写跨域问题，托管静态文件，处理GET（读取）和PUT（写入）请求</p>
+            <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0; font-size: 14px;">
+import http.server
+import socketserver
+import json
+import os
 
-.comment-username {
-    font-size: 16px;
-    font-weight: bold;
-    color: #2f5496;
-}
-</pre>
+PORT = 5500
+COMMENT_FILE = "comments.json"
 
-            <h4>3. 核心 JS 逻辑（多文章独立关键）</h4>
-            <p>修改 <code>js/comment.js</code>，通过 <code>data-article-id</code> 获取文章唯一标识，拼接成 <code>localStorage</code>
-                的存储键名，实现多文章评论隔离，核心代码片段：</p>
-            <pre>
-// 获取文章唯一标识
-const commentSection = document.querySelector('.comment-section');
-const articleId = commentSection.dataset.articleId;
-const storageKey = `${articleId}_comments`; // 存储键名示例：article_nginx_comments
+class CommentHandler(http.server.SimpleHTTPRequestHandler):
+    # 处理GET请求（读取评论+静态文件）
+    def do_GET(self):
+        if self.path == "/comments.json":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            if os.path.exists(COMMENT_FILE):
+                with open(COMMENT_FILE, "r", encoding="utf-8") as f:
+                    self.wfile.write(f.read().encode("utf-8"))
+            else:
+                self.wfile.write(b"{}")
+        else:
+            super().do_GET()
 
-// 保存评论到对应文章的本地存储
-function saveComment(comment) {
-    let comments = JSON.parse(localStorage.getItem(storageKey)) || [];
-    comments.unshift(comment);
-    localStorage.setItem(storageKey, JSON.stringify(comments));
-}
-</pre>
+    # 处理PUT请求（写入评论）
+    def do_PUT(self):
+        if self.path == "/comments.json":
+            try:
+                content_length = int(self.headers.get("Content-Length", 0))
+                post_data = self.rfile.read(content_length)
+                comment_data = json.loads(post_data.decode("utf-8"))
+                with open(COMMENT_FILE, "w", encoding="utf-8") as f:
+                    json.dump(comment_data, f, ensure_ascii=False, indent=2)
+                self.send_response(200)
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(b"Write success")
+            except Exception as e:
+                self.send_response(500)
+                self.end_headers()
+                self.wfile.write(f"Error: {str(e)}".encode("utf-8"))
+        else:
+            self.send_response(404)
+            self.end_headers()
 
-            <h3>四、功能亮点</h3>
-            <p>1. <strong>样式脚本解耦</strong>：评论样式与逻辑分别放在独立文件，不影响原有网页代码。</p>
-            <p>2. <strong>多文章独立存储</strong>：通过文章唯一标识区分存储键名，不同文章评论互不干扰。</p>
-            <p>3. <strong>零后端依赖</strong>：基于 <code>localStorage</code> 实现，无需服务器和数据库，适合静态网页。</p>
+# 启动服务器
+if __name__ == "__main__":
+    with socketserver.TCPServer(("", PORT), CommentHandler) as httpd:
+        print(f"服务器已启动：http://localhost:{PORT}")
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            httpd.server_close()
+            print("服务器已停止")
+            </pre>
 
-            <h3>五、总结</h3>
-            <p>本次更新通过原生 JS + localStorage 快速实现了静态网页的评论功能，且支持多文章独立存储，修改量少、扩展性强。后续若需实现多用户共享评论，可接入后端接口，将数据存储到服务器数据库中。</p>
+            <h3>四、运行步骤（直接照做即可）</h3>
+            <p>1. 把上述代码分别保存到对应文件中，确保文件结构正确</p>
+            <p>2. 无需手动创建comments.json（服务器会自动初始化）</p>
+            <p>3. 打开终端，运行Python服务器：python python_server.py</p>
+            <p>4. 访问http://localhost:5500，即可使用评论提交和展示功能</p>
+
+            <h3>五、核心总结</h3>
+            <p>1. 本地JSON存储评论的核心是“JS读写JSON + Python服务器支撑”，无需数据库，轻量化易上手</p>
+            <p>2. data-article-id属性是实现多文章评论隔离的关键，按文章ID分组存储评论</p>
+            <p>3. 时间戳作为评论唯一ID，unshift方法实现最新评论优先展示，提升用户体验</p>
+            <p>4. XMLHttpRequest同步请求确保JSON读写顺序执行，避免数据错乱</p>
+            <p>5. Python服务器解决了本地跨域和JSON文件写入权限问题，是本地调试的关键</p>
         </div>
         <!-- 返回首页按钮 -->
         <a href="index.html" class="back-home">返回首页</a>
     </div>
 
-    <!-- 评论模块（带文章唯一标识） -->
-    <div class="comment-section" data-article-id="article_comment_update">
+    <!-- 评论功能模块（带文章唯一标识，和你的范例风格一致） -->
+    <div class="comment-section" data-article-id="article_json_comment">
         <h2>评论区</h2>
+        <!-- 评论输入表单 -->
         <div class="comment-form">
             <div class="form-item">
                 <label for="username">昵称：</label>
@@ -130,14 +248,15 @@ function saveComment(comment) {
             </div>
             <button id="submit-comment">提交评论</button>
         </div>
+
+        <!-- 评论列表展示 -->
         <div class="comment-list">
             <h3>评论</h3>
             <div id="comment-container"></div>
         </div>
     </div>
 
-    <!-- 按顺序引入全局、评论脚本文件 -->
-    <script src="js/main.js"></script>
+    <!-- 引入评论脚本文件（和你的范例一致） -->
     <script src="js/comment.js"></script>
 </body>
 
