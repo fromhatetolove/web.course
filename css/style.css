@@ -1,161 +1,155 @@
-/* 全局样式重置 */
+/* 全局样式 - 零几年风格重置 */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+    /* 去掉现代box-sizing，还原旧版盒模型 */
+    font-family: "宋体", "SimSun", "黑体", "SimHei", Arial, sans-serif; /* 零几年主流中文字体 */
 }
 
 body {
-    background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
+    background-color: #e6e6e6; /* 旧版网页常见浅灰背景 */
+    background-image: url("data:image/gif;base64,R0lGODlhBgAGAPEAAP///wAAAPDw8IqKiuDg4Ojp6egAAAFhYWCQkJKysrL6+vhAAACH5BAAAAAAALAAAAAAGAAYAAAIODA4hJxJkkZ4pmZgkAQA7"); /* 像素化小背景图，旧版特色 */
+    color: #000000; /* 旧版以纯黑文字为主 */
+    line-height: 1.4; /* 更紧凑的行高 */
+    font-size: 14px; /* 零几年常见字体大小 */
 }
 
-/* 导航栏样式 */
+/* 顶部图片 - 旧版样式 */
+.top-img {
+    display: block;
+    width: 960px; /* 固定宽度，旧版网页不做自适应 */
+    height: 100px; /* 固定高度，替代vh单位（旧版浏览器不支持） */
+    margin: 0 auto;
+    border: 1px solid #999; /* 图片加边框，旧版常见样式 */
+}
+
+/* 导航栏样式 - 零几年经典导航 */
 .nav-bar {
-    background-color: #2c5047;
-    color: white;
-    padding: 0.1rem 0;
+    background-color: #003366; /* 旧版常用深蓝色导航 */
+    color: #ffffff;
+    width: 960px;
+    margin: 5px auto;
+    height: 35px; /* 固定高度导航栏 */
+    border: 1px solid #000000; /* 导航栏加黑色边框 */
 }
 
 .nav-container {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 100%;
+    display: block; /* 去掉flex，用旧版布局 */
+    text-align: center;
+    line-height: 35px; /* 行高居中，旧版常用方法 */
 }
 
 .nav-menu {
-    display: flex;
     list-style: none;
+    display: inline-block; /* 旧版横向列表实现 */
 }
 
 .nav-menu li {
-    margin-left: 2rem;
+    float: left; /* 左浮动实现横向排列，零几年核心布局方式 */
+    margin: 0 15px; /* 调整间距，更贴合旧版风格 */
 }
 
 .nav-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.0rem;
+    color: #ffff00; /* 导航链接用亮黄色，旧版醒目风格 */
+    text-decoration: underline; /* 旧版链接默认带下划线 */
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .nav-menu a:hover {
-    color: #3498db;
+    color: #ff6600; /*  hover用橙色，旧版常见高亮色 */
+    text-decoration: none; /*  hover时去掉下划线，经典交互 */
 }
 
-/* 博客容器样式 */
+/* 博客容器样式 - 固定宽度居中 */
 .blog-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 2rem auto;
-}
-
-.avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    border: 3px solid #3498db;
+    width: 960px; /* 零几年网页标准固定宽度 */
+    margin: 10px auto;
+    background-color: #ffffff; /* 白色内容区，旧版经典布局 */
+    border: 1px solid #cccccc; /* 内容区灰色边框 */
+    padding: 10px;
 }
 
 /* 文章列表样式 */
 .article-list {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
 }
 
 .article-item {
-    background-color: white;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f0f8ff; /* 浅蓝背景，旧版文章项样式 */
+    padding: 15px;
+    margin-bottom: 10px; /* 缩小间距，更紧凑 */
+    border: 1px dashed #6699cc; /* 虚线边框，零几年特色样式 */
 }
 
 .article-title {
-    color: #516a83;
-    font-size: 1.5rem;
+    color: #cc0000; /* 文章标题用红色，旧版醒目风格 */
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-decoration: underline; /* 标题下划线，旧版常见 */
 }
 
 .article-desc {
-    margin: 1rem 0;
-    color: #666;
+    color: #333333;
+    font-size: 14px;
 }
 
-/* 关于样式 */
+/* 关于和联系方式样式 */
 .about-section,
 .contact-section {
-    width: 70%;
-    margin: 3rem auto;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 960px;
+    margin: 10px auto;
+    background-color: #ffffff;
+    padding: 15px;
+    border: 1px solid #cccccc;
 }
 
 .about-section h2,
 .contact-section h2 {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 0.5rem;
+    color: #003366; /* 标题深蓝色，旧版经典色 */
+    margin-bottom: 10px;
+    border-bottom: 2px solid #cc0000; /* 红色下划线标题 */
+    padding-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-/* 文章详情样式 */
-.article-detail {
-    width: 70%;
-    margin: 2rem auto;
-    background-color: white;
-    padding: 3rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.article-meta {
-    color: #999;
-    margin: 1rem 0 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #eee;
-}
-
-.article-content h3 {
-    color: #2c3e50;
-    margin: 1.5rem 0 1rem;
-}
-
-.article-content p {
-    margin-bottom: 1rem;
-    line-height: 1.8;
-}
-
+/* 成员头像样式 */
 .memb_avt {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
+    border-radius: 0; /* 去掉圆角，零几年几乎不用圆角 */
     object-fit: cover;
-    border: 2px solid #3498db;
+    border: 2px solid #003366; /* 深蓝色边框，替代圆角 */
 }
 
+/* 链接样式 - 旧版蓝色下划线 */
+a {
+    color: #0000ff; /* 纯蓝链接，旧版默认样式 */
+    text-decoration: underline; /* 强制下划线 */
+}
+
+a:hover {
+    color: #ff0000; /*  hover变红，经典旧版交互 */
+    text-decoration: none;
+}
+
+/* 去掉现代响应式，还原旧版固定布局 */
 .back-home {
     display: inline-block;
-    margin-top: 2rem;
-    padding: 0.8rem 1.5rem;
-    background-color: #3498db;
-    color: white;
+    margin-top: 15px;
+    padding: 6px 12px;
+    background-color: #cccccc; /* 灰色按钮，旧版样式 */
+    color: #000000;
     text-decoration: none;
-    border-radius: 4px;
+    border: 1px solid #000000; /* 按钮加黑色边框 */
 }
 
 .back-home:hover {
-    background-color: #2980b9;
-}
-
-@media screen and (max-width: 768px) {
-    body {
-        font-size: 16px;
-        /* 移动端基础清晰字体大小（主流适配尺寸） */
-    }
+    background-color: #999999;
+    color: #ffffff;
 }

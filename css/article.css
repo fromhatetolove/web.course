@@ -1,0 +1,98 @@
+
+.article-detail {
+    width: 960px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    float: none;
+}
+
+/* 文章标题样式 */
+.article-detail h1 {
+    color: #cc0000;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #003366;
+    font-family: "宋体", "SimHei", sans-serif;
+}
+
+/* 文章元信息（时间/作者） */
+.article-meta {
+    color: #666666;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #999999;
+    font-family: "宋体", "SimHei", sans-serif;
+}
+
+/* 文章内容区域 */
+.article-content {
+    font-family: "宋体", "SimHei", sans-serif;
+}
+
+.article-content h3 {
+    color: #003366;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 15px 0 8px 0;
+}
+
+.article-content h4 {
+    color: #009900;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 12px 0 5px 0;
+}
+
+.article-content p {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    text-indent: 2em;
+    color: #000000;
+}
+
+/* 代码块样式 - 复古风格，统一文章页代码展示 */
+pre {
+    background-color: #f0f8ff;
+    padding: 10px;
+    border: 1px dashed #6699cc;
+    overflow-x: auto;
+    color: #000000;
+    font-size: 12px;
+    font-family: "宋体", monospace;
+    line-height: 1.4;
+    margin: 10px 0;
+}
+
+code {
+    color: #cc0000;
+    font-family: "宋体", monospace;
+    font-weight: bold;
+}
+
+/* 返回首页按钮样式 */
+.back-home {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 6px 12px;
+    background-color: #cccccc;
+    color: #000000;
+    text-decoration: none;
+    border: 1px solid #000000;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: "宋体", "SimHei", sans-serif;
+}
+
+.back-home:hover {
+    background-color: #999999;
+    color: #ffffff;
+    text-decoration: none;
+}

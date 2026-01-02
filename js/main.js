@@ -1,34 +1,29 @@
-document.addEventListener('DOMContentLoaded', function() {
+// 保留原有JS功能，适配旧版浏览器语法（零几年浏览器兼容写法）
+window.onload = function() { // 用window.onload替代DOMContentLoaded，旧版浏览器兼容更好
     // 获取元素
-    const targetH2List = document.querySelectorAll('.about-section h2, .contact-section h2');
+    var targetH2List = document.querySelectorAll('.about-section h2, .contact-section h2');
     
-    // 定义一组丰富的导航栏背景颜色
-    const colorList = [
-        '#2c3e50',   // 初始默认色
-        '#34495e',
-        '#1abc9c',
-        '#2ecc71',
-        '#3498db',
-        '#9b59b6',
-        '#e67e22',
-        '#e74c3c',
-        '#16a085',
-        '#27ae60'
+    // 定义一组复古颜色（零几年常见颜色）
+    var colorList = [
+        '#cc0000',   // 大红色（旧版主流）
+        '#003366',   // 深蓝色
+        '#009900',   // 草绿色
+        '#ff6600',   // 橙色
+        '#9900cc',   // 紫色
+        '#0066cc'    // 天蓝色
     ];
 
-    // 定义颜色索引，用于切换颜色列表中的值
-    let colorIndex = 0;
+    // 定义颜色索引
+    var colorIndex = 0;
 
-    
     setInterval(function() {
-        // 切换到下一个颜色，超出列表长度则重置为0
+        // 切换到下一个颜色
         colorIndex = (colorIndex + 1) % colorList.length;
+        var currentColor = colorList[colorIndex];
 
-        const currentColor = colorList[colorIndex];
-
-        // 给所有目标h2设置border-bottom颜色
-        targetH2List.forEach(h2 => {
-            h2.style.borderBottomColor = currentColor;
-        });
-    }, 50); // 50毫秒
-});
+        // 给所有目标h2设置border-bottom颜色（用for循环替代forEach，旧版兼容更好）
+        for(var i=0; i<targetH2List.length; i++) {
+            targetH2List[i].style.borderBottomColor = currentColor;
+        }
+    }, 50);
+};

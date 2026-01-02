@@ -1,19 +1,16 @@
 <!DOCTYPE html>
+<html>
 
 <head>
     <meta charset="UTF-8">
     <title>Web课程作业</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- 引入外部CSS样式文件（零几年经典引入方式，带type属性） -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
-    <!-- TOP图片 -->
-    <img src="images/gltu.jpg" style="
-    display: block; 
-    object-fit: cover;
-    width: 100%;
-    height: 12vh; 
-    ">
+    <!-- TOP图片 - 固定宽度，复古样式 -->
+    <img src="images/gltu.jpg" class="top-img">
 
     <!-- 导航栏模块 -->
     <nav class="nav-bar">
@@ -28,30 +25,28 @@
 
     <!-- 博客列表模块 -->
     <div class="blog-container">
-
         <!-- 文章列表模块 -->
         <div class="article-list">
-            <a href="comment.html" style="text-decoration: none;">
-            <div class="article-item">
-                <h3 class="article-title">【前端学习】网页添加独立评论功能</h3>
-                <p class="article-desc">添加了评论功能！记录在浏览器本地存储</p>
-            </div>
+            <a href="comment.html" style="text-decoration: none; color: #000;">
+                <div class="article-item">
+                    <h3 class="article-title">【前端学习】网页添加独立评论功能</h3>
+                    <p class="article-desc">添加了评论功能！记录在浏览器本地存储</p>
+                </div>
             </a>
 
-            <a href="deploy.html" style="text-decoration: none;">
-            <div class="article-item">
-                <h3 class="article-title">【Linux学习】Nginx部署静态网页</h3>
-                <p class="article-desc">记录在Linux系统下如何快速部署静态网页</p>
-            </div>
+            <a href="deploy.html" style="text-decoration: none; color: #000;">
+                <div class="article-item">
+                    <h3 class="article-title">【Linux学习】Nginx部署静态网页</h3>
+                    <p class="article-desc">记录在Linux系统下如何快速部署静态网页</p>
+                </div>
             </a>
 
-            <a href="js.html" style="text-decoration: none;">
-            <div class="article-item">
-                <h3 class="article-title">【Web学习】JavaScript应用</h3>
-                <p class="article-desc">JS是一个简单易用的WEB脚本语言</p>
-            </div>
+            <a href="js.html" style="text-decoration: none; color: #000;">
+                <div class="article-item">
+                    <h3 class="article-title">【Web学习】JavaScript应用</h3>
+                    <p class="article-desc">JS是一个简单易用的WEB脚本语言</p>
+                </div>
             </a>
-
         </div>
     </div>
 
@@ -60,43 +55,41 @@
         <h2>关于我们</h2>
         <p>我们是411组，这是我们的Web课程作业~</p>
 
-        <!-- 头像+名字 横向排列容器 -->
-        <div
-            style="margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 5rem; flex-wrap: wrap;">
-            
-            <div style="text-align: center;">
+        <!-- 头像+名字 横向排列容器（旧版inline-block布局） -->
+        <div style="margin-top: 20px; text-align: center;">
+            <div style="display: inline-block; text-align: center; margin: 0 20px;">
                 <img src="images/ljt.jpg" class="memb_avt">
-                <p style="margin-top: 0.5rem; font-weight: 500;">梁锦涛</p>
-            </div>
-            
-            <div style="text-align: center;">
-                <img src="images/qjh.jpg" class="memb_avt">
-                <p style="margin-top: 0.5rem; font-weight: 500;">邱杰海</p>
-            </div>
-            
-            <div style="text-align: center;">
-                <img src="images/zcr.jpg" class="memb_avt">
-                <p style="margin-top: 0.5rem; font-weight: 500;">张成荣</p>
-            </div>
-            
-            <div style="text-align: center;">
-                <img src="images/wqx.jpg" class="memb_avt">
-                <p style="margin-top: 0.5rem; font-weight: 500;">吴其迅</p>
-            </div>
-            
-            <div style="text-align: center;">
-                <img src="images/lgs.jpg" class="memb_avt">
-                <p style="margin-top: 0.5rem; font-weight: 500;">梁国胜</p>
-            </div>
-            
-            <div style="text-align: center;">
-                <img src="images/lcy.jpg" class="memb_avt">
-                <p style="margin-top: 0.5rem; font-weight: 500;">刘昌源</p>
+                <p style="margin-top: 5px; font-weight: bold; font-size: 14px;">梁锦涛</p>
             </div>
 
-            <div style="text-align: center;">
+            <div style="display: inline-block; text-align: center; margin: 0 20px;">
+                <img src="images/qjh.jpg" class="memb_avt">
+                <p style="margin-top: 5px; font-weight: bold; font-size: 14px;">邱杰海</p>
+            </div>
+
+            <div style="display: inline-block; text-align: center; margin: 0 20px;">
+                <img src="images/zcr.jpg" class="memb_avt">
+                <p style="margin-top: 5px; font-weight: bold; font-size: 14px;">张成荣</p>
+            </div>
+
+            <div style="display: inline-block; text-align: center; margin: 0 20px;">
+                <img src="images/wqx.jpg" class="memb_avt">
+                <p style="margin-top: 5px; font-weight: bold; font-size: 14px;">吴其迅</p>
+            </div>
+
+            <div style="display: inline-block; text-align: center; margin: 0 20px;">
+                <img src="images/lgs.jpg" class="memb_avt">
+                <p style="margin-top: 5px; font-weight: bold; font-size: 14px;">梁国胜</p>
+            </div>
+
+            <div style="display: inline-block; text-align: center; margin: 0 20px;">
+                <img src="images/lcy.jpg" class="memb_avt">
+                <p style="margin-top: 5px; font-weight: bold; font-size: 14px;">刘昌源</p>
+            </div>
+
+            <div style="display: inline-block; text-align: center; margin: 0 20px;">
                 <img src="images/wzm.jpg" class="memb_avt">
-                <p style="margin-top: 0.5rem; font-weight: 500;">王志明</p>
+                <p style="margin-top: 5px; font-weight: bold; font-size: 14px;">王志明</p>
             </div>
         </div>
     </div>
@@ -105,10 +98,18 @@
     <div id="contact" class="contact-section">
         <h2>联系方式</h2>
         <p>邮箱：stumalex@outlook.com</p>
-        <p>GitHub：<a href="https://github.com/fromhatetolove/" style="color: blue;">https://github.com/fromhatetolove/</a></p>
+        <p>GitHub：<a href="https://github.com/fromhatetolove/">https://github.com/fromhatetolove/</a></p>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- 新增：蓝色条形div -->
+    <div style="background-color: blue; width: 990px; 
+            padding: 15px 0; margin: 20px auto 0; 
+            text-align: center;">
+        <p style="color: white; margin: 0; font-size: 16px;">喜欢这种复古风格吗？如果你有好主意，来我的GitHub提一个Request吧！</p>
+    </div>
+
+    <!-- 引入外部JS脚本文件（零几年经典引入方式，带type属性） -->
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
 
 </html>
