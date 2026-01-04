@@ -60,7 +60,7 @@ class CommentHandler(http.server.SimpleHTTPRequestHandler):
             self.send_response(404)
             self.end_headers()
 
-    # 解决跨域问题（可选，增强兼容性）
+    # 解决跨域问题（增强兼容性）
     def end_headers(self):
         self.send_header("Access-Control-Allow-Methods", "GET, PUT, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>写给老师</title>
+    <!-- 按顺序引入全局、文章、评论样式文件 -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/article.css">
+</head>
+
+<body>
+    <!-- 文章详情模块 -->
+    <div class="article-detail">
+        <h1>写给老师</h1>
+        <p class="article-meta">更新时间：2026-01-04 | 编辑：梁锦涛</p>
+        <div class="article-content">
+            <h3>关于导航栏</h3>
+            <p>导航栏上的“关于”、“联系方式”使用的是ID跳转，而非页面跳转。请您不要误以为是假按钮哦。</p>
+            <h3>关于评论功能</h3>
+            <p>评论功能需要使用根目录下的server.py开启静态服务器，才能够正常读取本地的comments.json评论存储文件。</p>
+            <p style="color: red;">单纯使用浏览器打开index.html评论功能无法使用！</p>
+        </div>
+        <!-- 返回首页按钮 -->
+        <a href="../index.html" class="back-home">返回首页</a>
+    </div>
+
+</body>
+
+</html>
