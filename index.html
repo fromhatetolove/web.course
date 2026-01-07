@@ -19,7 +19,7 @@
                 <li><a href="index.html">首页</a></li>
                 <li><a href="#about">关于</a></li>
                 <li><a href="#contact">联系方式</a></li>
-                <li><a href="articles/to_mister.html" style="color: rgb(255, 112, 112);">写给老师</a></li>
+                <li><a href="articles/to_mister_check.html" style="color: rgb(255, 112, 112);">写给老师</a></li>
             </ul>
         </div>
     </nav>
@@ -65,6 +65,13 @@
                 </div>
             </a>
 
+            <a href="members/wqx.html" style="text-decoration: none; color: #000;">
+                <div style="display: inline-block; text-align: center; margin: 0 20px;">
+                    <img src="images/wqx.jpg" class="memb_avt">
+                    <p style="margin-top: 5px; font-weight: bold; font-size: 14px;">吴其迅</p>
+                </div>
+            </a>
+
             <a href="members/qjh.html" style="text-decoration: none; color: #000;">
                 <div style="display: inline-block; text-align: center; margin: 0 20px;">
                     <img src="images/qjh.jpg" class="memb_avt">
@@ -76,13 +83,6 @@
                 <div style="display: inline-block; text-align: center; margin: 0 20px;">
                     <img src="images/zcr.jpg" class="memb_avt">
                     <p style="margin-top: 5px; font-weight: bold; font-size: 14px;">张成荣</p>
-                </div>
-            </a>
-
-            <a href="members/wqx.html" style="text-decoration: none; color: #000;">
-                <div style="display: inline-block; text-align: center; margin: 0 20px;">
-                    <img src="images/wqx.jpg" class="memb_avt">
-                    <p style="margin-top: 5px; font-weight: bold; font-size: 14px;">吴其迅</p>
                 </div>
             </a>
 
@@ -120,11 +120,27 @@
     <div style="background-color: blue; width: 960px; 
             padding: 15px 0; margin: 20px auto 0; 
             text-align: center;">
-        <p style="color: white; margin: 0; font-size: 16px;">喜欢这种复古风格吗？如果你有好主意，来我的GitHub提一个Request吧！</p>
+        <p style="color: white; margin: 0; font-size: 16px;">
+            喜欢这种复古风格吗？如果你有好主意，来我的GitHub提一个Request吧！
+            [<a href="javascript:void(0);" onclick="like()" style="color: white; text-decoration: underline; cursor: pointer;">
+                喜欢
+            </a>/<a href="javascript:void(0);" onclick="dislike()" style="color: white; text-decoration: underline; cursor: pointer;">
+                讨厌
+            </a>]
+        </p>
     </div>
 
     <!-- 引入外部JS脚本文件 -->
     <script type="text/javascript" src="js/main.js"></script>
+    <script>
+        function like() {
+            alert('感谢喜欢！已记录。');
+        }
+
+        function dislike() {
+            alert('感谢反馈！已记录。');
+        }
+    </script>
 </body>
 
 </html>

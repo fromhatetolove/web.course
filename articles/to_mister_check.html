@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/article.css">
+    <title>验证</title>
+
+    <style>
+        .box {
+            width: 360px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="article-detail">
+        <h1>请先验证</h1>
+        <div class="article-content">
+            <div class="box">
+                <p>
+                    请输入Web编程教学班24软工1,2班的老师名字：
+                    <form onsubmit="return check()">
+                        <input type="text" id="namecheck">
+                        <button type="submit">验证</button>
+                    </form>
+                </p>
+            </div>
+
+            <a href="../index.html" class="back-home">返回首页</a>
+        </div>
+    </div>
+
+    <script>
+        function check() {
+            let name = document.getElementById('namecheck').value;
+
+            if (name === '赵鹤') 
+                window.location.href = './to_mister.html';
+            else
+                alert('输入错误，请重试！');
+
+            return false;
+        }
+    </script>
+</body>
+</html>

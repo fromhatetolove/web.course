@@ -16,7 +16,7 @@
     text-align: center;
     padding-bottom: 5px;
     border-bottom: 1px solid #003366;
-    font-family: "宋体", "SimHei", sans-serif;
+    font-family: "宋体", sans-serif;
 }
 
 /* 文章元信息样式（时间/作者） */
@@ -27,12 +27,12 @@
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 1px dashed #999999;
-    font-family: "宋体", "SimHei", sans-serif;
+    font-family: "宋体", sans-serif;
 }
 
 /* 文章内容区域样式 */
 .article-content {
-    font-family: "宋体", "SimHei", sans-serif;
+    font-family: "宋体", sans-serif;
 }
 
 /* 文章内容二级标题样式 */
@@ -68,7 +68,7 @@ pre {
     overflow-x: auto;
     color: #000000;
     font-size: 12px;
-    font-family: "宋体", monospace;
+    font-family: monospace;
     line-height: 1.4;
     margin: 10px 0;
 }
@@ -76,7 +76,7 @@ pre {
 /* 行内代码样式 */
 code {
     color: #cc0000;
-    font-family: "宋体", monospace;
+    font-family: monospace;
     font-weight: bold;
 }
 
@@ -91,7 +91,7 @@ code {
     border: 1px solid #000000;
     font-size: 14px;
     font-weight: bold;
-    font-family: "宋体", "SimHei", sans-serif;
+    font-family: "宋体", sans-serif;
 }
 
 /* 返回首页按钮悬浮样式 */
